@@ -1,0 +1,245 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-09-19T07:43:00.000Z",
+  "title": "Design System: Counter Books",
+  "extensions": {
+    "colorMeta": {
+      "night": {
+        "role": "neutral",
+        "displayName": "Night Shutter",
+        "canonical": "#0e1418",
+        "tonalRamp": ["#05080a", "#0e1418", "#1a242c", "#2c3a44", "#42525c", "#5e6e78", "#8a9aa4", "#c8d4d8"]
+      },
+      "shutter": {
+        "role": "neutral",
+        "displayName": "Shutter Pit",
+        "canonical": "#0c1216",
+        "tonalRamp": ["#06090b", "#0c1216", "#182228", "#2a3840", "#405058", "#5a6c74", "#86949c", "#c4ced2"]
+      },
+      "ice": {
+        "role": "neutral",
+        "displayName": "Ice Acrylic",
+        "canonical": "#d7e6ea",
+        "tonalRamp": ["#1a2428", "#334248", "#4d636c", "#6a848e", "#8aa4ae", "#adc4cc", "#d7e6ea", "#f2f7f8"]
+      },
+      "cyan": {
+        "role": "primary",
+        "displayName": "Shop Cyan",
+        "canonical": "#1aa3c4",
+        "tonalRamp": ["#062028", "#0a3d4a", "#0e6f86", "#1aa3c4", "#3bb8d4", "#6ccfe3", "#a3e4f0", "#d7f3f8"]
+      },
+      "cyan-deep": {
+        "role": "primary",
+        "displayName": "Cyan Deep",
+        "canonical": "#0e6f86",
+        "tonalRamp": ["#041418", "#072830", "#0e6f86", "#1589a4", "#1aa3c4", "#4dbcd4", "#8ad4e6", "#d0eef4"]
+      },
+      "amber": {
+        "role": "secondary",
+        "displayName": "Tungsten Spill",
+        "canonical": "#c45c2a",
+        "tonalRamp": ["#2a1208", "#4a1e0c", "#7a3514", "#c45c2a", "#d97a48", "#e8a070", "#f0c4a0", "#f8e6d8"]
+      },
+      "amber-deep": {
+        "role": "secondary",
+        "displayName": "Amber Deep",
+        "canonical": "#7a3514",
+        "tonalRamp": ["#1a0c06", "#3a180a", "#5a2810", "#7a3514", "#c45c2a", "#d97a48", "#e8b090", "#f6e0d0"]
+      },
+      "amber-lit": {
+        "role": "secondary",
+        "displayName": "Amber Lit",
+        "canonical": "#f0a06a",
+        "tonalRamp": ["#3a1810", "#6a2c14", "#a04a20", "#c45c2a", "#e08048", "#f0a06a", "#f6c49a", "#fce8d4"]
+      },
+      "alert": {
+        "role": "tertiary",
+        "displayName": "Alert Red",
+        "canonical": "#e24b4b",
+        "tonalRamp": ["#2a0c0c", "#5a1818", "#8a2424", "#c43838", "#e24b4b", "#ee7878", "#f5a8a8", "#fbd4d4"]
+      },
+      "steel": {
+        "role": "neutral",
+        "displayName": "Steel",
+        "canonical": "#8a9098",
+        "tonalRamp": ["#1a1e22", "#2a3238", "#3e464c", "#545c64", "#6e767e", "#8a9098", "#b0b6bc", "#dce0e4"]
+      },
+      "steel-dark": {
+        "role": "neutral",
+        "displayName": "Steel Dark",
+        "canonical": "#2a3238",
+        "tonalRamp": ["#12161a", "#1a2024", "#2a3238", "#3c464c", "#545e64", "#707880", "#9aa2a8", "#d0d4d8"]
+      },
+      "plate": {
+        "role": "neutral",
+        "displayName": "Plate",
+        "canonical": "#c5ccd1",
+        "tonalRamp": ["#1a1e22", "#3a4248", "#5a646c", "#7a848c", "#9aa4ac", "#c5ccd1", "#dce2e6", "#f3f6f8"]
+      },
+      "plate-ink": {
+        "role": "neutral",
+        "displayName": "Plate Ink",
+        "canonical": "#1a1e22",
+        "tonalRamp": ["#0c0e10", "#1a1e22", "#2c3238", "#444c54", "#646c74", "#8a9298", "#b8bec4", "#e6eaee"]
+      },
+      "member": {
+        "role": "neutral",
+        "displayName": "Member Plate",
+        "canonical": "#10171c",
+        "tonalRamp": ["#080c0e", "#10171c", "#1c262c", "#2e3a40", "#465258", "#647078", "#8c98a0", "#c8d0d4"]
+      },
+      "well": {
+        "role": "neutral",
+        "displayName": "Till Well",
+        "canonical": "#1c2328",
+        "tonalRamp": ["#0c1012", "#1c2328", "#2c383e", "#3e4c54", "#586870", "#788890", "#a8b4b8", "#dce4e8"]
+      },
+      "ticker-well": {
+        "role": "neutral",
+        "displayName": "Ticker Well",
+        "canonical": "#05090c",
+        "tonalRamp": ["#030506", "#05090c", "#0e181c", "#1c2c32", "#344850", "#546870", "#8498a0", "#c4d4d8"]
+      },
+      "tag-ink": {
+        "role": "neutral",
+        "displayName": "Tag Ink",
+        "canonical": "#1a1208",
+        "tonalRamp": ["#0c0804", "#1a1208", "#2e2010", "#4a3418", "#6e4c28", "#987044", "#c4a078", "#ead8b8"]
+      }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Display", "purpose": "Extruded aluminum mark COUNTER BOOKS. Condensed 800, uppercase, tracking 0.12em." },
+      "headline": { "displayName": "Headline", "purpose": "The four fascia figures only. Tabular condensed 800. No other surface inherits this size." },
+      "title": { "displayName": "Title", "purpose": "Column legends, till heading, bin names. Condensed uppercase." },
+      "body": { "displayName": "Body", "purpose": "Row copy, hints, empty states. One size in Barlow." },
+      "label": { "displayName": "Label", "purpose": "Field labels, period keys, chips, sample strip. Condensed uppercase." }
+    },
+    "shadows": [
+      { "name": "focus", "value": "0 0 0 2px #0e1418, 0 0 0 4px #1aa3c4", "purpose": "Keyboard focus ring. Night inner, cyan outer." },
+      { "name": "aluminum-inset", "value": "inset 0 1px 0 rgb(255 255 255 / 0.35)", "purpose": "Name-bar highlight. The only inset metal edge." },
+      { "name": "mark-extrusion", "value": "0 1px 0 #8b9399, 0 2px 0 #5c6369, 0 3px 0 #2a3034, 0 4px 1px #111", "purpose": "Channel-letter stack on the mark only. Not a card shadow." }
+    ],
+    "motion": [
+      { "name": "ease", "value": "cubic-bezier(0.16, 1, 0.3, 1)", "purpose": "Settle and flash easing." },
+      { "name": "settle", "value": "420ms cubic-bezier(0.16, 1, 0.3, 1)", "purpose": "Module brightness settle after a posting." },
+      { "name": "alert-flash", "value": "720ms cubic-bezier(0.16, 1, 0.3, 1)", "purpose": "Reserved for loss or newly low stock." },
+      { "name": "ticker", "value": "28s linear infinite", "purpose": "Posting tape march. Pauses on hover. Off under reduced motion." }
+    ],
+    "breakpoints": [
+      { "name": "board", "value": "900px", "purpose": "Stack to one column; fascia 2×2; members stack; name bar wraps." }
+    ]
+  },
+  "components": [
+    {
+      "name": "Name Bar",
+      "kind": "nav",
+      "refersTo": "namebar",
+      "description": "Full-width aluminum fascia with extruded condensed mark and cyan period keys.",
+      "html": "<header class=\"ds-namebar\"><span class=\"ds-mark\">Counter Books</span><div class=\"ds-period\"><button type=\"button\" class=\"ds-period-btn is-on\">Today</button><button type=\"button\" class=\"ds-period-btn\">All</button></div></header>",
+      "css": ".ds-namebar{display:flex;align-items:center;gap:16px;min-height:64px;padding:0 18px;border-radius:2px;color:#1a1e22;background:linear-gradient(180deg,rgb(255 255 255 / 0.12),rgb(14 20 24 / 0.22)),repeating-radial-gradient(circle at 14px 12px,#6a7278 0 3px,#8a9298 4px 6px,transparent 7px 28px),linear-gradient(90deg,#9aa4aa,#c5ccd1 40%,#8e969c);box-shadow:inset 0 1px 0 rgb(255 255 255 / 0.35)}.ds-mark{font-family:\"Barlow Condensed\",sans-serif;font-weight:800;font-size:1.85rem;letter-spacing:0.12em;text-transform:uppercase;line-height:1.1;color:#f3f6f8;text-shadow:0 1px 0 #8b9399,0 2px 0 #5c6369,0 3px 0 #2a3034,0 4px 1px #111}.ds-period{display:flex;margin-left:auto;background:#1c2328;padding:3px;border-radius:2px}.ds-period-btn{appearance:none;border:0;background:transparent;color:#9aa8ae;font-family:\"Barlow Condensed\",sans-serif;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;font-size:0.78rem;padding:7px 12px}.ds-period-btn.is-on,.ds-period-btn:hover{background:#1aa3c4;color:#0e1418}.ds-period-btn:focus-visible{outline:none;box-shadow:0 0 0 2px #0e1418,0 0 0 4px #1aa3c4}"
+    },
+    {
+      "name": "Fascia Module",
+      "kind": "custom",
+      "refersTo": "fascia-module",
+      "description": "Equal LED acrylic plate for profit, cash, or stock. Ice figures on a cyan module pitch.",
+      "html": "<article class=\"ds-module\"><h2>Profit</h2><p class=\"ds-figure\">Rs 13,350</p><p class=\"ds-hint\">Sales minus cost minus spend</p></article>",
+      "css": ".ds-module{position:relative;min-height:126px;padding:16px 16px 12px;border-radius:2px;overflow:hidden;border:1px solid #1c2a30;background:repeating-radial-gradient(circle at 3px 3px,#3ec8e8 0 1.4px,transparent 1.8px 9px),linear-gradient(180deg,#123038,#0a181c);color:#d7e6ea}.ds-module h2{margin:0;font-family:\"Barlow Condensed\",sans-serif;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;font-size:0.82rem;color:#eef6f8;line-height:1.15;text-shadow:0 1px 2px #05090c,0 0 10px rgb(0 0 0 / 0.8)}.ds-figure{margin:8px 0 0;font-family:\"Barlow Condensed\",sans-serif;font-weight:800;font-size:clamp(1.8rem,3.4vw,2.7rem);letter-spacing:0.02em;line-height:1.05;font-variant-numeric:tabular-nums;color:#d7e6ea;text-shadow:0 1px 0 #0a1216,0 2px 0 #05090c,0 0 10px rgb(5 9 12 / 0.8)}.ds-hint{margin:4px 0 0;font-size:0.78rem;color:#c5dbe0;font-family:\"Barlow\",sans-serif}.ds-module:hover{filter:brightness(1.08)}.ds-module:focus-visible{outline:none;box-shadow:0 0 0 2px #0e1418,0 0 0 4px #1aa3c4}"
+    },
+    {
+      "name": "Spend Module",
+      "kind": "custom",
+      "refersTo": "fascia-module-spend",
+      "description": "The opposing fascia plate. Tungsten LED pitch, amber-lit legend, ice figure.",
+      "html": "<article class=\"ds-module-spend\"><h2>Spend</h2><p class=\"ds-figure-spend\">Rs 2,550</p><p class=\"ds-hint\">Posted today</p></article>",
+      "css": ".ds-module-spend{min-height:126px;padding:16px 16px 12px;border-radius:2px;overflow:hidden;border:1px solid #1c2a30;background:repeating-radial-gradient(circle at 3px 3px,#e09048 0 1.4px,transparent 1.8px 9px),linear-gradient(180deg,#3a2214,#1a100c);color:#d7e6ea}.ds-module-spend h2{margin:0;font-family:\"Barlow Condensed\",sans-serif;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;font-size:0.82rem;color:#f0a06a;line-height:1.15;text-shadow:0 1px 2px #05090c,0 0 10px rgb(0 0 0 / 0.8)}.ds-figure-spend{margin:8px 0 0;font-family:\"Barlow Condensed\",sans-serif;font-weight:800;font-size:clamp(1.8rem,3.4vw,2.7rem);letter-spacing:0.02em;line-height:1.05;font-variant-numeric:tabular-nums;color:#d7e6ea;text-shadow:0 1px 0 #0a1216,0 2px 0 #05090c,0 0 16px rgb(196 92 42 / 0.5)}.ds-module-spend .ds-hint{margin:4px 0 0;font-size:0.78rem;color:#c5dbe0;font-family:\"Barlow\",sans-serif}.ds-module-spend:hover{filter:brightness(1.08)}.ds-module-spend:focus-visible{outline:none;box-shadow:0 0 0 2px #0e1418,0 0 0 4px #1aa3c4}"
+    },
+    {
+      "name": "Cyan Ticker",
+      "kind": "custom",
+      "refersTo": "ticker",
+      "description": "Full-width posting tape. Condensed cyan caps in a masked trench.",
+      "html": "<div class=\"ds-ticker\" aria-label=\"Recent postings\"><div class=\"ds-ticker-track\"><span>Sale HP 15s 1x Rs 142,000</span><span>Expense courier Rs 2,550</span><span>Sale Kingston A400 1x Rs 8,400</span></div></div>",
+      "css": ".ds-ticker{overflow:hidden;min-height:36px;display:flex;align-items:center;background:#05090c;border:1px solid #16323a;border-radius:2px;mask-image:linear-gradient(90deg,transparent,#000 24px,#000 calc(100% - 24px),transparent)}.ds-ticker-track{display:flex;gap:2.5rem;white-space:nowrap;font-family:\"Barlow Condensed\",sans-serif;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:#1aa3c4;font-size:0.92rem;padding:0 32px;animation:ds-ticker 28s linear infinite}.ds-ticker:hover .ds-ticker-track{animation-play-state:paused}.ds-ticker:focus-visible{outline:none;box-shadow:0 0 0 2px #0e1418,0 0 0 4px #1aa3c4}@keyframes ds-ticker{from{transform:translateX(0)}to{transform:translateX(-40%)}}"
+    },
+    {
+      "name": "Till Key",
+      "kind": "button",
+      "refersTo": "till-key",
+      "description": "Raster till plate for RECORD SALE / RECORD EXPENSE. Transparent chrome, contain-fit silhouette, 1px press.",
+      "html": "<button class=\"ds-key-plate\" type=\"button\"><span class=\"ds-key-face\">Record sale</span></button>",
+      "css": ".ds-key-plate{appearance:none;border:0;padding:0;background:transparent;border-radius:2px;width:100%;cursor:pointer}.ds-key-face{display:grid;place-items:center;height:88px;border-radius:2px;font-family:\"Barlow Condensed\",sans-serif;font-weight:800;letter-spacing:0.12em;text-transform:uppercase;font-size:1.05rem;color:#d7e6ea;text-shadow:0 1px 0 #05090c,0 2px 0 #000;background:repeating-radial-gradient(circle at 3px 3px,#4ad0ee 0 1.2px,transparent 1.6px 8px),linear-gradient(180deg,#1a4a58,#0a2028);border:1px solid #6d757c}.ds-key-plate:hover .ds-key-face{filter:brightness(1.12)}.ds-key-plate:active:not(:disabled){transform:translateY(1px)}.ds-key-plate:focus-visible{outline:none;box-shadow:0 0 0 2px #0e1418,0 0 0 4px #1aa3c4}.ds-key-plate:disabled{opacity:0.45;cursor:not-allowed}"
+    },
+    {
+      "name": "Till Field",
+      "kind": "input",
+      "refersTo": "field",
+      "description": "Well input on the till. Ice copy, cyan caret, 2px acrylic cut.",
+      "html": "<label class=\"ds-field\">Amount (Rs)<input class=\"ds-input\" inputmode=\"numeric\" placeholder=\"0\" /></label>",
+      "css": ".ds-field{display:flex;flex-direction:column;gap:4px;font-family:\"Barlow Condensed\",sans-serif;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;font-size:0.72rem;color:#c5dbe0}.ds-input{background:#1c2328;color:#d7e6ea;border:1px solid #2c383e;border-radius:2px;padding:8px 10px;font-family:\"Barlow\",sans-serif;font-size:0.92rem;letter-spacing:0.01em;text-transform:none;font-weight:400;caret-color:#1aa3c4}.ds-input::placeholder{color:#7a8a90}.ds-input:hover{border-color:#1aa3c4}.ds-input:focus-visible{outline:none;box-shadow:0 0 0 2px #0e1418,0 0 0 4px #1aa3c4}"
+    },
+    {
+      "name": "Category Chip",
+      "kind": "chip",
+      "refersTo": "category-chip",
+      "description": "Expense category key. Well at rest, tungsten when pressed.",
+      "html": "<div class=\"ds-cats\"><button type=\"button\" class=\"ds-cat\">Rent</button><button type=\"button\" class=\"ds-cat is-on\">Shop</button><button type=\"button\" class=\"ds-cat\">Courier</button></div>",
+      "css": ".ds-cats{display:flex;flex-wrap:wrap;gap:4px}.ds-cat{appearance:none;border:1px solid #2c383e;background:#1c2328;color:#d7e6ea;font-family:\"Barlow Condensed\",sans-serif;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;font-size:0.72rem;padding:6px 8px;border-radius:2px;cursor:pointer}.ds-cat:hover{border-color:#1aa3c4}.ds-cat.is-on,.ds-cat[aria-pressed=\"true\"]{background:#c45c2a;color:#1a0e08;border-color:#7a3514}.ds-cat:focus-visible{outline:none;box-shadow:0 0 0 2px #0e1418,0 0 0 4px #1aa3c4}"
+    },
+    {
+      "name": "Inventory Bin",
+      "kind": "card",
+      "refersTo": "bin",
+      "description": "Stock plate. Cyan outline when selected, alert seam when low.",
+      "html": "<button type=\"button\" class=\"ds-bin is-on\"><span class=\"ds-bin-n\">HP 15s i5 8/512</span><span class=\"ds-bin-q\">qty 2 · 142,000</span></button>",
+      "css": ".ds-bin{appearance:none;text-align:left;border:1px solid #2a3338;border-radius:2px;background:#10171c;color:#d7e6ea;padding:10px 12px;min-height:72px;position:relative;width:100%;cursor:pointer}.ds-bin-n{display:block;font-family:\"Barlow Condensed\",sans-serif;font-weight:800;letter-spacing:0.04em;font-size:0.95rem}.ds-bin-q{display:block;font-family:\"Barlow Condensed\",sans-serif;font-variant-numeric:tabular-nums;color:#c5dbe0;margin-top:4px}.ds-bin:hover{border-color:#1aa3c4}.ds-bin.is-on,.ds-bin[aria-pressed=\"true\"]{outline:2px solid #1aa3c4;outline-offset:0}.ds-bin.is-low{border-color:#e24b4b}.ds-bin:focus-visible{outline:none;box-shadow:0 0 0 2px #0e1418,0 0 0 4px #1aa3c4}"
+    },
+    {
+      "name": "Packing Tag",
+      "kind": "chip",
+      "refersTo": "packing-tag",
+      "description": "Live low-stock overlay. Tag silhouette with condensed SKU copy. Never on healthy stock.",
+      "html": "<span class=\"ds-tag\"><svg class=\"ds-tag-shape\" viewBox=\"0 0 92 56\" aria-hidden=\"true\"><path d=\"M8 10h62l14 18-14 18H8V10z\" fill=\"#c45c2a\"/><circle cx=\"18\" cy=\"28\" r=\"4\" fill=\"#1a1208\"/></svg><span class=\"ds-tag-copy\">HP 15s i5 8/512 low</span></span>",
+      "css": ".ds-tag{position:relative;display:grid;width:92px;place-items:center;background:transparent;padding:0}.ds-tag-shape{grid-area:1/1;width:100%;height:auto;display:block}.ds-tag-copy{grid-area:1/1;position:relative;z-index:1;color:#1a1208;font-family:\"Barlow Condensed\",sans-serif;font-weight:800;letter-spacing:0.04em;text-transform:uppercase;font-size:0.58rem;line-height:1.1;text-align:center;padding:14px 10px 8px}.ds-tag:hover .ds-tag-shape path{filter:brightness(1.08)}.ds-tag:focus-visible{outline:none;box-shadow:0 0 0 2px #0e1418,0 0 0 4px #1aa3c4}"
+    }
+  ],
+  "narrative": {
+    "northStar": "Night Fascia",
+    "overview": "The books are a night shop fascia, not a SaaS card grid. After the shutter comes down, four acrylic modules stay lit: profit, cash, spend, and stock. Sales and expenses remain visible as opposing members. The owner reads the day from the fascia, posts the next till event on two raster keys, and notices low stock by a packing tag.\n\nMaterials are commercial channel-letter hardware, not dashboard chrome. The board is night shutter paint with a vertical slat grain. Figures sit on an LED module pitch. The name is extruded condensed caps on an aluminum bar. Spend runs tungsten. Alerts are a shop-red seam and a packing tag, not a toast stack.\n\nConfirmed visual rejections: card chrome, 12px rounded KPI tiles, offset drop-shadow elevation, bloomed neon dashboards, generic accounting iconography, and system UI display faces.",
+    "keyCharacteristics": [
+      "Four equal backlit fascia modules across the top of the board",
+      "4px aluminum seams; plates abut, they do not float",
+      "Shop cyan for sales/profit/cash; tungsten spill for spend",
+      "Full-width aluminum name bar with extruded condensed mark",
+      "Packing tags only on live low stock",
+      "Till keys as raster plates (`object-fit: contain`), not chrome buttons"
+    ],
+    "rules": [
+      { "name": "The Cyan–Tungsten Rule", "body": "Cyan lights sales, profit, cash, and the ticker. Amber lights spend and expenses. Never paint both accents on the same plate.", "section": "colors" },
+      { "name": "The Alert Seam Rule", "body": "Alert red is a 1px bin border (and the packing tag), never a filled status chip or toast.", "section": "colors" },
+      { "name": "The One Body Size Rule", "body": "Body data shares one size. Only the four glance figures step up.", "section": "typography" },
+      { "name": "The Channel Caps Rule", "body": "The mark, legends, ticker, till labels, and chips are Barlow Condensed uppercase. Do not add a third family. Do not use a system display face.", "section": "typography" },
+      { "name": "The Raster Plate Rule", "body": "LED modules, the name bar, till keys, and packing tags are plates. Elevation is inset highlight and LED pitch, not offset box-shadow.", "section": "elevation" },
+      { "name": "The Alert Flash Rule", "body": "Brightness flash is reserved for loss or newly low stock. Ordinary postings settle the figures without alarm.", "section": "elevation" },
+      { "name": "The Aluminum Seam Rule", "body": "Adjacent plates meet at 4px. No 16px card gutters, no floating tiles.", "section": "elevation" }
+    ],
+    "dos": [
+      "Do keep four equal fascia modules on the first viewport, full width, 4px seams.",
+      "Do keep Sales and Expenses as opposing columns with the net line under both.",
+      "Do put RECORD SALE and RECORD EXPENSE on raster till keys, 88px, `object-fit: contain`.",
+      "Do overlay packing tags only on live low SKUs (STOCK module + low bins).",
+      "Do set glance figures in Barlow Condensed 800 with tabular nums and `Rs` PKR.",
+      "Do use `2px` radius and `4px` seams on every plate.",
+      "Do honor `prefers-reduced-motion` (no ticker/settle/flash) and `prefers-reduced-transparency` (solid module well)."
+    ],
+    "donts": [
+      "Don't recast the board as a SaaS card grid, 12px rounded KPI tiles, or gapped dashboard.",
+      "Don't add offset drop shadows; plates are rasters and inset aluminum, not lifted cards.",
+      "Don't hide expenses behind a tab or replace the pair with a single profit card.",
+      "Don't use packing tags, or any badge, on healthy stock.",
+      "Don't bloom neon glow on the LED pitch; the modules read as cheap commercial channel letters.",
+      "Don't introduce Inter, system UI display faces, or a third type family.",
+      "Don't turn module legends into a reusable eyebrow/kicker pattern on every surface."
+    ]
+  }
+}

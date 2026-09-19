@@ -1,0 +1,185 @@
+{
+  "title": "Choose the visual world",
+  "question": "The roll assigned Night Fascia. Keep it, take an alternate, or re-roll.",
+  "options": [
+    {
+      "id": "assigned",
+      "label": "Night Fascia",
+      "kicker": "THE ROLL",
+      "lineage": "Pakistani computer-shop LED fascia after dark",
+      "thesis": "The books are the shopfront at night: four backlit acrylic modules answer profit, cash, spend, and stock.",
+      "palette": ["#0e1418", "#d7e6ea", "#1aa3c4", "#c45c2a", "#e24b4b"],
+      "materials": ["extruded acrylic letters", "LED module grid", "aluminum channel", "night glass"],
+      "viewport": "A dark shutter wall. Four lit fascia modules across the top. A cyan sales ticker under them. Inventory as bin plates. Record sale and expense sit as till keys on the right.",
+      "risk": "Falls into generic neon dashboard if the LEDs bloom instead of reading as cheap commercial channel letters.",
+      "raised": [
+        { "from": "challenger-arcade", "raise": "Figures sit on an LED module pitch. Flash is reserved for alerts only." },
+        { "from": "challenger-timetable", "raise": "Body data shares one size. Only the four glance figures step up." },
+        { "from": "challenger-zoo", "raise": "Panels meet at a hard acrylic seam. No card chrome." },
+        { "from": "challenger-streetwear", "raise": "Zones are named in channel letters: PROFIT, CASH, SPEND, STOCK. A live item keeps a packing tag." },
+        { "from": "challenger-tensegrity", "raise": "Profit is sales pulling against expenses. Both members stay visible." }
+      ],
+      "comp": ".impeccable/mocks/decision/assigned.png",
+      "wireframe": {
+        "cols": 12,
+        "rows": 10,
+        "regions": [
+          { "label": "fascia name", "x": 0, "y": 0, "w": 12, "h": 1 },
+          { "label": "PROFIT", "x": 0, "y": 1, "w": 3, "h": 3, "accent": true },
+          { "label": "CASH", "x": 3, "y": 1, "w": 3, "h": 3, "accent": true },
+          { "label": "SPEND", "x": 6, "y": 1, "w": 3, "h": 3 },
+          { "label": "STOCK", "x": 9, "y": 1, "w": 3, "h": 3 },
+          { "label": "sales ticker", "x": 0, "y": 4, "w": 9, "h": 1 },
+          { "label": "sales vs expenses", "x": 0, "y": 5, "w": 9, "h": 3 },
+          { "label": "till keys", "x": 9, "y": 4, "w": 3, "h": 6, "accent": true },
+          { "label": "inventory bins", "x": 0, "y": 8, "w": 9, "h": 2 }
+        ]
+      }
+    },
+    {
+      "id": "model-pick",
+      "label": "Dealer Rate List",
+      "kicker": "IMPECCABLE’S PICK",
+      "lineage": "Hafeez Center photocopied rate lists",
+      "thesis": "Today's books are a dealer sheet: four highlighter cells, ballpoint stock, red stamp for loss.",
+      "palette": ["#f2f2f0", "#f5e04a", "#1a1a1a", "#c41e3a"],
+      "materials": ["photocopy toner", "highlighter", "ballpoint", "rubber stamp"],
+      "viewport": "A full-bleed A4 sheet. Four highlighted totals under the header. SKU rows in condensed type. Record sale is a ballpoint line at the foot.",
+      "risk": "Also the direction most runs in this category land on: the paper ledger wearing the shop's clothes.",
+      "comp": ".impeccable/mocks/decision/model-pick.png",
+      "wireframe": {
+        "cols": 12,
+        "rows": 10,
+        "regions": [
+          { "label": "sheet header", "x": 0, "y": 0, "w": 12, "h": 1 },
+          { "label": "profit cell", "x": 0, "y": 1, "w": 3, "h": 2, "accent": true },
+          { "label": "cash cell", "x": 3, "y": 1, "w": 3, "h": 2, "accent": true },
+          { "label": "spend cell", "x": 6, "y": 1, "w": 3, "h": 2 },
+          { "label": "stock cell", "x": 9, "y": 1, "w": 3, "h": 2 },
+          { "label": "sku rows", "x": 0, "y": 3, "w": 12, "h": 5 },
+          { "label": "add line", "x": 0, "y": 8, "w": 12, "h": 2, "accent": true }
+        ]
+      }
+    },
+    {
+      "id": "challenger-split-flap",
+      "label": "Till Board",
+      "verdict": "competitive",
+      "lineage": "rail concourse split-flap board",
+      "thesis": "Sales, expenses, and stock are live rows on a flap board. Delayed is loss. Cancelled is stockout.",
+      "palette": ["#0b0b0d", "#2f2f2f", "#f2f2f2", "#e7aa00", "#fb0000"],
+      "materials": ["matte black flaps", "brushed steel frame", "amber delay lamps"],
+      "viewport": "A steel-framed board. Condensed white caps in fixed cells. Today's totals as the header row. Sales cascade in underneath. Record sale is SET ENTRY.",
+      "case": "Holds product clarity: a live row board already is a ledger. Loses identification: the owner does not read money as a station board.",
+      "risk": "Reads as operations-software cosplay if the flaps are illustration instead of a real character grid.",
+      "comp": ".impeccable/mocks/decision/challenger-split-flap.png",
+      "hero": ".impeccable/mocks/decision/split-flap-hero.png",
+      "board": ".impeccable/mocks/decision/split-flap-board.png",
+      "wireframe": {
+        "cols": 12,
+        "rows": 10,
+        "regions": [
+          { "label": "board header", "x": 0, "y": 0, "w": 12, "h": 2, "accent": true },
+          { "label": "live rows", "x": 0, "y": 2, "w": 9, "h": 8 },
+          { "label": "set entry", "x": 9, "y": 2, "w": 3, "h": 8, "accent": true }
+        ]
+      }
+    },
+    {
+      "id": "challenger-arcade",
+      "label": "Cabinet Score",
+      "verdict": "declined",
+      "lineage": "pixel-art arcade cabinet screen",
+      "thesis": "Profit is the high score. Stock is lives. Expenses hit like damage.",
+      "palette": ["#050508", "#2ad400", "#f8e81c", "#f0f0f0"],
+      "materials": ["fat pixels", "scanlines", "phosphor bloom"],
+      "viewport": "A 240-line playfield. Score, cash, spend, stock pinned to the top edge in 8-by-8 caps.",
+      "case": "Loses both axes. Arcade glow is not how a shopkeeper reads rupees, and a sprite scoreboard hides cost versus selling price.",
+      "kept": "Module-pitch grid. Flash reserved for alerts.",
+      "hero": "https://impeccable.style/worlds/cards/medium-native-crt-arcade-pixel-glow-hero.webp",
+      "risk": "Novelty that fights a daily till."
+    },
+    {
+      "id": "challenger-timetable",
+      "label": "Slide Rack",
+      "verdict": "declined",
+      "lineage": "1971 pocket airline timetable on a light table",
+      "thesis": "Each book (profit, cash, spend, stock) is a tinted glass slide on a goldenrod bed.",
+      "palette": ["#d6a31e", "#2a2e32", "#f4efe4", "#c1121f"],
+      "materials": ["lit goldenrod", "tinted acetate", "one type size"],
+      "viewport": "A raked rack of slides. Rank by weight and reversal, never by size.",
+      "case": "Loses both. Goldenrod travel ephemera is foreign to the bazaar, and one type size fights glanceable PKR figures.",
+      "kept": "Body data shares one size. Only glance figures step up.",
+      "hero": "https://impeccable.style/worlds/cards/rw-timetable-slide-rack-hero.webp",
+      "risk": "Pretty and slow at the counter."
+    },
+    {
+      "id": "challenger-zoo",
+      "label": "Guide Map",
+      "verdict": "declined",
+      "lineage": "zoo and gardens opening-morning map",
+      "thesis": "Profit, cash, spend, and stock swell as four flat-colour lobes.",
+      "palette": ["#8ed462", "#f5f1e4", "#2c2e2a", "#ff705d"],
+      "materials": ["flat unmodulated colour", "coastline divides"],
+      "viewport": "One lobe dominates. The coast is the only divider.",
+      "case": "Loses both. Garden maps are not Hall Road, and organic lobes fight tabular inventory.",
+      "kept": "Hard seams instead of card chrome.",
+      "hero": "https://impeccable.style/worlds/cards/aww2-zoo-gardens-guide-map-hero.webp",
+      "risk": "A picture book where a stock list must live."
+    },
+    {
+      "id": "challenger-streetwear",
+      "label": "Packing Bay",
+      "verdict": "declined",
+      "lineage": "industrial streetwear quote grammar",
+      "thesis": "Every zone is labeled in straight quotes. Low stock wears a zip-tie tag.",
+      "palette": ["#f4f4f0", "#111111", "#ff5a00"],
+      "materials": ["white cotton", "black nylon", "hazard stripe", "orange zip-tie"],
+      "viewport": "Quoted plates: \"PROFIT\" \"CASH\" \"SPEND\" \"STOCK\". A diagonal stripe under whatever is live.",
+      "case": "Loses both. Fashion grammar is a stockroom costume, not the shop's public face.",
+      "kept": "Literal named zones. A live item keeps a packing tag.",
+      "hero": "https://impeccable.style/worlds/cards/textiles-weave-drape-fashion-industrial-quote-grammar-hero.webp",
+      "risk": "Looks like a brand lookbook, not books."
+    },
+    {
+      "id": "challenger-tensegrity",
+      "label": "Force Column",
+      "verdict": "declined",
+      "lineage": "tensegrity column of carbon rods and red cord",
+      "thesis": "Sales are tension. Expenses are compression. Net profit is the rigid body they make.",
+      "palette": ["#e6e2dc", "#1a1a1a", "#d0122b"],
+      "materials": ["carbon rods", "red cord", "concrete ground"],
+      "viewport": "A force diagram of today's till. Pull sales, release expenses, lock stock.",
+      "case": "Loses both. Sculpture language is alien at the counter, and a force metaphor muddies simple P/L.",
+      "kept": "Profit shows both members: sales against expenses.",
+      "hero": "https://impeccable.style/worlds/cards/kinetic-sculpture-automata-tensegrity-breathing-column-hero.webp",
+      "risk": "The owner has to decode a sculpture to know if they made money."
+    }
+  ],
+  "reroll": { "registers": ["safer", "bolder"] },
+  "buildPath": { "value": "code", "toggle": true },
+  "canon": true,
+  "canonCard": {
+    "label": "The category standard",
+    "thesis": "A finance dashboard with a sidebar, four KPI cards, and an area chart, executed at full craft.",
+    "palette": ["#f8fafc", "#0f172a", "#2563eb"],
+    "materials": ["hairline cards", "muted charts", "system sans"],
+    "viewport": "Left nav. Four equal metric cards. A 30-day profit chart. Tables below.",
+    "risk": "Indistinguishable from every other books app by design.",
+    "comp": ".impeccable/mocks/decision/canon.png",
+    "wireframe": {
+      "cols": 12,
+      "rows": 10,
+      "regions": [
+        { "label": "sidebar", "x": 0, "y": 0, "w": 2, "h": 10 },
+        { "label": "kpi 1", "x": 2, "y": 0, "w": 2, "h": 2 },
+        { "label": "kpi 2", "x": 4, "y": 0, "w": 3, "h": 2 },
+        { "label": "kpi 3", "x": 7, "y": 0, "w": 2, "h": 2 },
+        { "label": "kpi 4", "x": 9, "y": 0, "w": 3, "h": 2 },
+        { "label": "chart", "x": 2, "y": 2, "w": 10, "h": 4, "accent": true },
+        { "label": "table", "x": 2, "y": 6, "w": 10, "h": 4 }
+      ]
+    }
+  },
+  "steer": true
+}
