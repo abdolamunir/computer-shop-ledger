@@ -4,7 +4,11 @@ dist
 *.local
 .env
 .env.*
+!.env.example
 .impeccable/config.local.json
 
 .impeccable/questions/
 .impeccable/mocks/decision/split-flap-*
+firebase-debug.log
+.firebase
+
