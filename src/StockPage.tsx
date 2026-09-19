@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, type KeyboardEvent, type ReactNode } from "react";
+import { useEffect, useRef, useState, type KeyboardEvent } from "react";
 import { CaretLeft, PencilSimple } from "@phosphor-icons/react";
 import {
   inboundQty,
@@ -18,15 +18,7 @@ import { Cell, Sheet, SheetRow } from "./Sheet";
 import { setBooks } from "./useBooks";
 import type { Till } from "./useTill";
 
-export function StockRecord({
-  till,
-  recordId,
-  actions,
-}: {
-  till: Till;
-  recordId: string;
-  actions?: ReactNode;
-}) {
+export function StockRecord({ till, recordId }: { till: Till; recordId: string }) {
   const { books, pick } = till;
   const item = books.items.find((i) => i.id === recordId);
   const [name, setName] = useState(item?.name ?? "");
@@ -151,7 +143,6 @@ export function StockRecord({
           </div>
         ))}
       </dl>
-      {actions}
       {editError ? <p className="err">{editError}</p> : null}
       <div className="fact-block">
         <h3>Stock</h3>

@@ -69,15 +69,24 @@ export function sheetDate(iso: string): string {
   });
 }
 
-export function periodRangeLabel(period: "today" | "week" | "month"): string {
+export function periodRangeLabel(
+  period: "today" | "week" | "month" | "custom",
+  span?: { from: string; to: string },
+): string {
+  const fmt = (d: Date | string) => {
+    const date = typeof d === "string" ? new Date(`${d}T00:00:00`) : d;
+    return date.toLocaleDateString("en-GB", { day: "numeric", month: "short" });
+  };
+  if (period === "custom" && span?.from && span?.to) {
+    const from = span.from <= span.to ? span.from : span.to;
+    const to = span.from <= span.to ? span.to : span.from;
+    return from === to ? fmt(from) : `${fmt(from)} – ${fmt(to)}`;
+  }
   if (period === "today") {
-    return new Date().toLocaleDateString("en-GB", { day: "numeric", month: "short" });
+    return fmt(new Date());
   }
   if (period === "week") {
-    const a = startOfWeek();
-    const b = new Date();
-    const fmt = (d: Date) => d.toLocaleDateString("en-GB", { day: "numeric", month: "short" });
-    return `${fmt(a)} – ${fmt(b)}`;
+    return `${fmt(startOfWeek())} – ${fmt(new Date())}`;
   }
   return new Date().toLocaleDateString("en-GB", { month: "long", year: "numeric" });
 }

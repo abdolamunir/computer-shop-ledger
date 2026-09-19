@@ -1,13 +1,15 @@
 import { hourLabel, startOfMonth, startOfWeek, todayKey, uid } from "./format";
 
-export type Period = "today" | "week" | "month";
+export type Period = "today" | "week" | "month" | "custom";
+export type DateSpan = { from: string; to: string };
 export type TillMode = "sale" | "stock";
 export type Page = "home" | "stock";
 
 export const PERIODS: { id: Period; label: string }[] = [
   { id: "today", label: "Today" },
-  { id: "week", label: "Week" },
-  { id: "month", label: "Month" },
+  { id: "week", label: "This Week" },
+  { id: "month", label: "This Month" },
+  { id: "custom", label: "Custom" },
 ];
 
 export type ItemKind = "Laptop" | "Storage" | "Network" | "Accessory";
@@ -358,6 +360,8 @@ export function parseBooks(raw: unknown): Books | null {
 }
 
 export function loadBooks(): Books {
+  const guest = persistKey === KEY;
+  if (guest) return sampleBooks();
   try {
     const raw = localStorage.getItem(persistKey);
     if (!raw) return emptyBooks();
@@ -374,24 +378,30 @@ export function saveBooks(books: Books): void {
   localStorage.setItem(persistKey, JSON.stringify(books));
 }
 
-function inPeriod(iso: string, period: Period): boolean {
+function inPeriod(iso: string, period: Period, span?: DateSpan): boolean {
   const day = todayKey(new Date(iso));
+  if (period === "custom") {
+    if (!span?.from || !span?.to) return false;
+    const from = span.from <= span.to ? span.from : span.to;
+    const to = span.from <= span.to ? span.to : span.from;
+    return day >= from && day <= to;
+  }
   if (period === "today") return day === todayKey();
   if (period === "week") return day >= todayKey(startOfWeek());
   return day >= todayKey(startOfMonth());
 }
 
-function stockInSpend(books: Books, period?: Period): number {
+function stockInSpend(books: Books, period?: Period, span?: DateSpan): number {
   return books.expenses
-    .filter((e) => e.category === "Stock in" && (!period || inPeriod(e.at, period)))
+    .filter((e) => e.category === "Stock in" && (!period || inPeriod(e.at, period, span)))
     .reduce((n, e) => n + e.amount, 0);
 }
 
-export function totals(books: Books, period: Period): Totals {
-  const sales = books.sales.filter((s) => inPeriod(s.at, period));
+export function totals(books: Books, period: Period, span?: DateSpan): Totals {
+  const sales = books.sales.filter((s) => inPeriod(s.at, period, span));
   const revenue = sales.reduce((n, s) => n + s.qty * s.unitSell, 0);
   const cogs = sales.reduce((n, s) => n + s.qty * s.unitCost, 0);
-  const spend = stockInSpend(books, period);
+  const spend = stockInSpend(books, period, span);
   const cashSales = books.sales.reduce((n, s) => n + s.qty * s.unitSell, 0);
   const cashSpend = stockInSpend(books);
   const stockQty = books.items.reduce((n, i) => n + onHand(books, i), 0);
@@ -407,15 +417,15 @@ export function totals(books: Books, period: Period): Totals {
   };
 }
 
-export function periodSales(books: Books, period: Period): Sale[] {
+export function periodSales(books: Books, period: Period, span?: DateSpan): Sale[] {
   return books.sales
-    .filter((s) => inPeriod(s.at, period))
+    .filter((s) => inPeriod(s.at, period, span))
     .slice()
     .sort((a, b) => (a.at < b.at ? 1 : -1));
 }
 
-export function feed(books: Books, period: Period): Array<{ at: string; text: string }> {
-  return periodSales(books, period)
+export function feed(books: Books, period: Period, span?: DateSpan): Array<{ at: string; text: string }> {
+  return periodSales(books, period, span)
     .map((s) => ({
       at: s.at,
       text: `SALE ${s.itemName} ${s.qty}x Rs ${Math.round(s.qty * s.unitSell).toLocaleString("en-US")}`,
@@ -441,8 +451,8 @@ function saleTotals(sales: Sale[]) {
   return { revenue, cogs, profit: revenue - cogs };
 }
 
-export function trend(books: Books, period: Period): TrendPoint[] {
-  const sales = periodSales(books, period);
+export function trend(books: Books, period: Period, span?: DateSpan): TrendPoint[] {
+  const sales = periodSales(books, period, span);
 
   if (period === "today") {
     const startH = 9;
@@ -455,9 +465,17 @@ export function trend(books: Books, period: Period): TrendPoint[] {
     return trimTrend(hours);
   }
 
-  const start = period === "week" ? startOfWeek() : startOfMonth();
+  const start =
+    period === "custom" && span
+      ? new Date(`${span.from <= span.to ? span.from : span.to}T00:00:00`)
+      : period === "week"
+        ? startOfWeek()
+        : startOfMonth();
   start.setHours(0, 0, 0, 0);
-  const end = new Date();
+  const end =
+    period === "custom" && span
+      ? new Date(`${span.from <= span.to ? span.to : span.from}T00:00:00`)
+      : new Date();
   end.setHours(0, 0, 0, 0);
   const days: TrendPoint[] = [];
   for (let d = new Date(start); d <= end; d = addDays(d, 1)) {
@@ -481,9 +499,10 @@ function trimTrend(points: TrendPoint[]): TrendPoint[] {
 export function topSellers(
   books: Books,
   period: Period,
+  span?: DateSpan,
 ): Array<{ itemId: string; name: string; qty: number; revenue: number }> {
   const map = new Map<string, { itemId: string; name: string; qty: number; revenue: number }>();
-  for (const sale of periodSales(books, period)) {
+  for (const sale of periodSales(books, period, span)) {
     const row = map.get(sale.itemId) ?? { itemId: sale.itemId, name: sale.itemName, qty: 0, revenue: 0 };
     row.qty += sale.qty;
     row.revenue += sale.qty * sale.unitSell;

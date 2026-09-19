@@ -36,7 +36,6 @@ export function StockBoard({ till }: { till: Till }) {
         </p>
       </header>
       <Sheet
-        className={items.length > 20 ? "is-scroll" : undefined}
         columns={STOCK_COLS}
         empty={items.length === 0 ? "No stock yet. Use Add stock." : undefined}
       >

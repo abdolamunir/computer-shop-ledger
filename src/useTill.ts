@@ -6,13 +6,14 @@ import {
   supplierName as nameOfSupplier,
   totals,
   upsertItem,
+  type DateSpan,
   type ItemKind,
   type Period,
   type TillMode,
 } from "./books";
 import { setBooks, useBooks } from "./useBooks";
 
-export function useTill(period: Period) {
+export function useTill(period: Period, span?: DateSpan) {
   const books = useBooks();
   const [mode, setMode] = useState<TillMode>("sale");
   const [itemId, setItemId] = useState(books.items[0]?.id ?? "");
@@ -59,7 +60,7 @@ export function useTill(period: Period) {
     }
     setError("");
     setBooks(next);
-    const after = totals(next, period);
+    const after = totals(next, period, span);
     bump(keys, after.profit < 0);
     return true;
   }

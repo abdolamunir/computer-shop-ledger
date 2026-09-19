@@ -1,10 +1,34 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useSyncExternalStore } from "react";
 import { onAuthStateChanged, signInWithPopup, signOut, type User } from "firebase/auth";
 import { firebaseReady, getFirebaseAuth, googleProvider } from "./firebase";
 import { attachCloud } from "./useBooks";
 
+let authUser: User | null = null;
+const authListeners = new Set<() => void>();
+
+function setAuthUser(next: User | null) {
+  authUser = next;
+  authListeners.forEach((l) => l());
+}
+
+export function useUser(): User | null {
+  return useSyncExternalStore(
+    (cb) => {
+      authListeners.add(cb);
+      return () => authListeners.delete(cb);
+    },
+    () => authUser,
+    () => authUser,
+  );
+}
+
+export function firstNameOf(user: User | null): string {
+  if (!user) return "";
+  return user.displayName?.split(" ")[0] || user.email?.split("@")[0] || "";
+}
+
 export function useAuth() {
-  const [user, setUser] = useState<User | null>(null);
+  const [user, setUser] = useState<User | null>(authUser);
   const [ready, setReady] = useState(!firebaseReady);
   const [error, setError] = useState("");
   const [busy, setBusy] = useState(false);
@@ -13,6 +37,7 @@ export function useAuth() {
     const auth = getFirebaseAuth();
     if (!auth) return;
     return onAuthStateChanged(auth, (next) => {
+      setAuthUser(next);
       setUser(next);
       setReady(true);
       void attachCloud(next?.uid ?? null);

@@ -1,22 +1,13 @@
 import { Package, ShoppingCart, TrendDown, TrendUp, Wallet } from "@phosphor-icons/react";
-import type { ReactNode } from "react";
-import { periodSales, totals, type Period } from "./books";
+import { periodSales, totals, type DateSpan, type Period } from "./books";
 import { pkr } from "./format";
 import { StockBoard } from "./StockBoard";
 import type { Till } from "./useTill";
 
-export function Home({
-  period,
-  till,
-  actions,
-}: {
-  period: Period;
-  till: Till;
-  actions?: ReactNode;
-}) {
+export function Home({ period, span, till }: { period: Period; span?: DateSpan; till: Till }) {
   const { books } = till;
-  const t = totals(books, period);
-  const sales = periodSales(books, period);
+  const t = totals(books, period, span);
+  const sales = periodSales(books, period, span);
   const profit = Math.max(0, t.profit);
   const loss = Math.max(0, -t.profit);
 
@@ -72,7 +63,6 @@ export function Home({
           </article>
         ))}
       </section>
-      {actions}
       <StockBoard till={till} />
     </div>
   );
