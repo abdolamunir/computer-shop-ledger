@@ -7,3 +7,4 @@ dist
 .impeccable/config.local.json
 
 .impeccable/questions/
+.impeccable/mocks/decision/split-flap-*
