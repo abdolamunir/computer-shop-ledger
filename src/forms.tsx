@@ -71,18 +71,22 @@ export function StockInForm({
     setNewSell,
     newKind,
     setNewKind,
-    supplierId,
     setSupplierId,
+    supplierName,
+    setSupplierName,
     restockCost,
     setRestockCost,
     error,
     onStockIn,
   } = till;
-  const [target, setTarget] = useState(lockedId ?? itemId ?? books.items[0]?.id ?? "__new__");
+  const [target, setTarget] = useState(
+    lockedId || (books.items.length === 0 ? "__new__" : itemId || "__new__"),
+  );
 
   useEffect(() => {
     if (lockedId) setTarget(lockedId);
-  }, [lockedId]);
+    else if (books.items.length === 0) setTarget("__new__");
+  }, [lockedId, books.items.length]);
   const isNew = !lockedId && target === "__new__";
   const item = lockedId
     ? books.items.find((i) => i.id === lockedId)
@@ -101,6 +105,7 @@ export function StockInForm({
     const next = books.items.find((i) => i.id === id);
     if (!next) return;
     if (next.supplierId) setSupplierId(next.supplierId);
+    setSupplierName(books.suppliers.find((s) => s.id === next.supplierId)?.name ?? "");
     setRestockCost(String(next.cost));
   }
 
@@ -123,7 +128,14 @@ export function StockInForm({
         <>
           <div className="field">
             <label htmlFor="new-name">Name</label>
-            <input id="new-name" value={newName} onChange={(e) => setNewName(e.target.value)} />
+            <input
+              id="new-name"
+              value={newName}
+              onChange={(e) => setNewName(e.target.value)}
+              placeholder="e.g. SSD 512GB"
+              autoComplete="off"
+              autoFocus
+            />
           </div>
           <div className="field">
             <label htmlFor="new-kind">Type</label>
@@ -157,14 +169,24 @@ export function StockInForm({
       </div>
       <div className="field">
         <label htmlFor="stock-supplier">Supplier</label>
-        <select id="stock-supplier" value={supplierId} onChange={(e) => setSupplierId(e.target.value)}>
-          <option value="">No supplier</option>
+        <input
+          id="stock-supplier"
+          list="stock-supplier-list"
+          value={supplierName}
+          onChange={(e) => {
+            const value = e.target.value;
+            setSupplierName(value);
+            const hit = books.suppliers.find((s) => s.name.toLowerCase() === value.trim().toLowerCase());
+            setSupplierId(hit?.id ?? "");
+          }}
+          placeholder="Type a supplier name"
+          autoComplete="off"
+        />
+        <datalist id="stock-supplier-list">
           {books.suppliers.map((s) => (
-            <option key={s.id} value={s.id}>
-              {s.name}
-            </option>
+            <option key={s.id} value={s.name} />
           ))}
-        </select>
+        </datalist>
       </div>
       {isNew ? (
         <>
@@ -175,6 +197,8 @@ export function StockInForm({
               inputMode="numeric"
               value={newCost}
               onChange={(e) => setNewCost(e.target.value)}
+              placeholder="0"
+              autoComplete="off"
             />
           </div>
           <div className="field">
@@ -184,6 +208,8 @@ export function StockInForm({
               inputMode="numeric"
               value={newSell}
               onChange={(e) => setNewSell(e.target.value)}
+              placeholder="0"
+              autoComplete="off"
             />
           </div>
         </>

@@ -817,6 +817,21 @@ export function salesForItem(books: Books, itemId: string): Sale[] {
     .sort((a, b) => (a.at < b.at ? 1 : -1));
 }
 
+export function ensureSupplier(
+  books: Books,
+  name: string,
+): { books: Books; id: string } | string {
+  const trimmed = name.trim();
+  if (!trimmed) return { books, id: "" };
+  const hit = books.suppliers.find((s) => s.name.toLowerCase() === trimmed.toLowerCase());
+  if (hit) return { books, id: hit.id };
+  const next = upsertSupplier(books, { name: trimmed, phone: "", city: "", note: "" });
+  if (typeof next === "string") return next;
+  const created = next.suppliers.at(-1);
+  if (!created) return "Could not add supplier.";
+  return { books: next, id: created.id };
+}
+
 export function upsertSupplier(
   books: Books,
   draft: { id?: string; name: string; phone: string; city: string; note: string },

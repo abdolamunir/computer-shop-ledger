@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
 import {
+  ensureSupplier,
   postSale,
   restock,
+  supplierName as nameOfSupplier,
   totals,
   upsertItem,
   type ItemKind,
@@ -20,6 +22,7 @@ export function useTill(period: Period) {
   const [newSell, setNewSell] = useState("");
   const [newKind, setNewKind] = useState<ItemKind>("Accessory");
   const [supplierId, setSupplierId] = useState(books.suppliers[0]?.id ?? "");
+  const [supplierName, setSupplierName] = useState(books.suppliers[0]?.name ?? "");
   const [restockCost, setRestockCost] = useState("");
   const [error, setError] = useState("");
   const [settled, setSettled] = useState<string[]>([]);
@@ -34,8 +37,9 @@ export function useTill(period: Period) {
   }, [books.items, itemId]);
 
   useEffect(() => {
+    if (!supplierId) return;
     if (!books.suppliers.some((s) => s.id === supplierId)) {
-      setSupplierId(books.suppliers[0]?.id ?? "");
+      setSupplierId("");
     }
   }, [books.suppliers, supplierId]);
 
@@ -87,24 +91,30 @@ export function useTill(period: Period) {
   }
 
   function onAddItem() {
-    const next = upsertItem(books, {
+    const named = ensureSupplier(books, supplierName);
+    if (typeof named === "string") {
+      setError(named);
+      return false;
+    }
+    const next = upsertItem(named.books, {
       name: newName,
       qty: Number(qty) || 0,
       cost: Number(newCost) || 0,
       sell: Number(newSell) || 0,
       lowAt: qty > 2 ? 2 : 1,
       kind: newKind,
-      supplierId,
+      supplierId: named.id,
     });
     if (!apply(next, ["stock"])) return false;
     setNewName("");
     setNewCost("");
     setNewSell("");
+    setSupplierId(named.id);
     return true;
   }
 
   function onStockIn(target: string) {
-    if (target === "__new__") return onAddItem();
+    if (!target || target === "__new__") return onAddItem();
     const item = books.items.find((i) => i.id === target);
     if (!item) {
       setError("Pick an item to restock.");
@@ -115,7 +125,13 @@ export function useTill(period: Period) {
       setError("Rate cannot be negative.");
       return false;
     }
-    return apply(restock(books, item.id, qty, true, supplierId || item.supplierId, cost), [
+    const named = ensureSupplier(books, supplierName);
+    if (typeof named === "string") {
+      setError(named);
+      return false;
+    }
+    setSupplierId(named.id);
+    return apply(restock(named.books, item.id, qty, true, named.id || item.supplierId, cost), [
       "cash",
       "stock",
       "spend",
@@ -129,6 +145,7 @@ export function useTill(period: Period) {
     const item = books.items.find((i) => i.id === id);
     if (item) {
       if (item.supplierId) setSupplierId(item.supplierId);
+      setSupplierName(nameOfSupplier(books, item.supplierId));
       setRestockCost(String(item.cost));
     }
   }
@@ -151,6 +168,8 @@ export function useTill(period: Period) {
     setNewKind,
     supplierId,
     setSupplierId,
+    supplierName,
+    setSupplierName,
     restockCost,
     setRestockCost,
     error,
