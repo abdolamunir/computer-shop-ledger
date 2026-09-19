@@ -45,7 +45,7 @@ export function StockBoard({ till }: { till: Till }) {
           const stockIn = inboundQty(books, item.id);
           const stock = onHand(books, item);
           const low = stock <= item.lowAt;
-          const profit = item.sell - item.cost;
+          const profit = sold * item.sell;
           return (
             <SheetRow
               key={item.id}
