@@ -82,6 +82,18 @@ export type Totals = {
 };
 
 const KEY = "counter-books.v1";
+const UID_KEY = "counter-books.uid";
+let persistKey = KEY;
+
+export function setPersistUid(uid: string | null) {
+  persistKey = uid ? `${KEY}.${uid}` : KEY;
+  if (uid) localStorage.setItem(UID_KEY, uid);
+  else localStorage.removeItem(UID_KEY);
+}
+
+export function lastPersistUid(): string | null {
+  return localStorage.getItem(UID_KEY);
+}
 
 export const DUMMY_SUPPLIERS: Supplier[] = [
   {
@@ -264,10 +276,43 @@ export function emptyBooks(openingCash = 0): Books {
     items: [],
     sales: [],
     expenses: [],
-    suppliers: dummySuppliers(),
+    suppliers: [],
     stockIns: [],
     sample: false,
   };
+}
+
+const SAMPLE_ITEM_IDS = new Set([
+  "hp-15s",
+  "dell-vostro",
+  "kingston-512",
+  "kingston-1tb",
+  "ssd-256",
+  "wd-1tb",
+  "ddr4-8",
+  "ram-16",
+  "m185",
+  "keyboard",
+  "mouse-pad",
+  "hdmi-2m",
+  "usb-cable",
+  "lan-cable",
+  "usb-hub",
+  "flash",
+  "archer-c6",
+  "webcam",
+  "speaker",
+  "headset",
+  "charger",
+  "adapter",
+  "cooling",
+  "ups",
+]);
+
+export function isDummyBooks(books: Books): boolean {
+  if (books.sample) return true;
+  if (books.items.length === 0) return false;
+  return books.items.every((item) => SAMPLE_ITEM_IDS.has(item.id));
 }
 
 export function inboundQty(books: Books, itemId: string): number {
@@ -286,8 +331,7 @@ export function onHand(books: Books, item: Item): number {
 }
 
 function normalize(books: Books): Books {
-  let suppliers = Array.isArray(books.suppliers) ? books.suppliers : [];
-  if (suppliers.length === 0) suppliers = dummySuppliers();
+  const suppliers = Array.isArray(books.suppliers) ? books.suppliers : [];
   const stockIns = Array.isArray(books.stockIns) ? books.stockIns : [];
   const expenses = (Array.isArray(books.expenses) ? books.expenses : []).filter(
     (e) => e.category === "Stock in",
@@ -315,20 +359,19 @@ export function parseBooks(raw: unknown): Books | null {
 
 export function loadBooks(): Books {
   try {
-    const raw = localStorage.getItem(KEY);
-    if (!raw) return sampleBooks();
+    const raw = localStorage.getItem(persistKey);
+    if (!raw) return emptyBooks();
     const parsed = JSON.parse(raw) as unknown;
     const books = parseBooks(parsed);
-    if (!books) return sampleBooks();
-    if (books.sample) return sampleBooks();
+    if (!books || isDummyBooks(books)) return emptyBooks();
     return books;
   } catch {
-    return sampleBooks();
+    return emptyBooks();
   }
 }
 
 export function saveBooks(books: Books): void {
-  localStorage.setItem(KEY, JSON.stringify(books));
+  localStorage.setItem(persistKey, JSON.stringify(books));
 }
 
 function inPeriod(iso: string, period: Period): boolean {

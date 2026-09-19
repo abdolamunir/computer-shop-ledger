@@ -1,15 +1,21 @@
 import { useSyncExternalStore } from "react";
-import { dummySuppliers, loadBooks, saveBooks, type Books } from "./books";
+import {
+  emptyBooks,
+  isDummyBooks,
+  lastPersistUid,
+  loadBooks,
+  saveBooks,
+  setPersistUid,
+  type Books,
+} from "./books";
 import { loadUserBooks, saveUserBooks } from "./cloud";
 
+setPersistUid(lastPersistUid());
 let books = loadBooks();
-if (books.suppliers.length === 0) {
-  books = { ...books, suppliers: dummySuppliers() };
-}
 saveBooks(books);
 
 const listeners = new Set<() => void>();
-let cloudUid: string | null = null;
+let cloudUid: string | null = lastPersistUid();
 let saveTick = 0;
 
 function emit() {
@@ -21,6 +27,7 @@ function queueCloudSave(uid: string) {
   const tick = ++saveTick;
   window.setTimeout(() => {
     if (tick !== saveTick || cloudUid !== uid) return;
+    if (isDummyBooks(books)) return;
     void saveUserBooks(uid, books);
   }, 400);
 }
@@ -30,7 +37,7 @@ export function getBooks(): Books {
 }
 
 export function setBooks(next: Books) {
-  books = next;
+  books = { ...next, sample: false };
   emit();
   if (cloudUid) queueCloudSave(cloudUid);
 }
@@ -38,15 +45,20 @@ export function setBooks(next: Books) {
 export async function attachCloud(uid: string | null) {
   cloudUid = uid;
   saveTick += 1;
+  setPersistUid(uid);
+  books = loadBooks();
+  emit();
   if (!uid) return;
   try {
     const remote = await loadUserBooks(uid);
     if (cloudUid !== uid) return;
-    if (remote) {
+    if (remote && !isDummyBooks(remote)) {
       books = remote;
       emit();
       return;
     }
+    if (isDummyBooks(books)) books = emptyBooks();
+    emit();
     await saveUserBooks(uid, books);
   } catch {
     /* keep the on-device copy if the cloud is unreachable */

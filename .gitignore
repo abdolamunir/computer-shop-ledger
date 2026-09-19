@@ -12,3 +12,4 @@ dist
 firebase-debug.log
 .firebase
 
+.vercel
