@@ -1,21 +1,20 @@
-import { Warning } from "@phosphor-icons/react";
-import { lowItems, onHand, outboundQty, inboundQty, supplierName, totals } from "./books";
+import { lowItems, onHand, outboundQty, inboundQty, stockInsForItem, supplierName, totals } from "./books";
 import { productPhoto } from "./catalog";
-import { pkr, pkrPlain } from "./format";
+import { pkr, pkrPlain, sheetDate } from "./format";
 import { go } from "./nav";
 import { Cell, Sheet, SheetRow } from "./Sheet";
 import type { Till } from "./useTill";
 
 const STOCK_COLS = [
   { key: "item", label: "Item" },
+  { key: "date", label: "Date" },
   { key: "supplier", label: "Supplier" },
-  { key: "status", label: "Status" },
   { key: "stockIn", label: "In", align: "right" as const },
   { key: "sold", label: "Out", align: "right" as const },
-  { key: "qty", label: "Stock", align: "right" as const },
+  { key: "qty", label: "Stock Balance", align: "right" as const },
   { key: "cost", label: "Unit Price", align: "right" as const },
-  { key: "sell", label: "Sell Rs", align: "right" as const },
-  { key: "profit", label: "Profit Rs", align: "right" as const },
+  { key: "sell", label: "Selling Price", align: "right" as const },
+  { key: "profit", label: "Profit", align: "right" as const },
 ];
 
 export function StockBoard({ till }: { till: Till }) {
@@ -45,7 +44,8 @@ export function StockBoard({ till }: { till: Till }) {
           const stockIn = inboundQty(books, item.id);
           const stock = onHand(books, item);
           const low = stock <= item.lowAt;
-          const profit = sold * item.sell;
+          const profit = sold * (item.sell - item.cost);
+          const at = item.addedAt || stockInsForItem(books, item.id)[0]?.at;
           return (
             <SheetRow
               key={item.id}
@@ -62,17 +62,8 @@ export function StockBoard({ till }: { till: Till }) {
                   {item.name}
                 </span>
               </Cell>
+              <Cell>{at ? sheetDate(at) : "—"}</Cell>
               <Cell>{supplierName(books, item.supplierId) || "—"}</Cell>
-              <Cell>
-                {low ? (
-                  <span className="badge">
-                    <Warning size={12} weight="bold" aria-hidden />
-                    Low
-                  </span>
-                ) : (
-                  "OK"
-                )}
-              </Cell>
               <Cell align="right">{stockIn}</Cell>
               <Cell align="right">{sold}</Cell>
               <Cell align="right">{stock}</Cell>

@@ -32,7 +32,7 @@ export function App() {
   const title = onRecord ? (recordName ?? "Item") : firstName ? `Welcome, ${firstName}` : "Welcome";
   const subtitle = onRecord
     ? periodRangeLabel(period, span)
-    : "A shop ledger for sales, stock, profit, and cash.";
+    : "Sales minus cost";
 
   function open(next: Popup) {
     till.setError("");
